@@ -32,7 +32,7 @@ export function JobCard({ post, index }: JobCardProps) {
   };
 
   const jobSlug = `/jobs/${encodeURIComponent(
-    post.link.split("/").pop() || post.title.toLowerCase().replace(/\s+/g, "-")
+    post.title.toLowerCase().replace(/\s+/g, "-")
   )}`;
 
   return (
@@ -47,7 +47,7 @@ export function JobCard({ post, index }: JobCardProps) {
       <div className="absolute inset-0 z-[-1] rounded-lg bg-lighter-blue opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
 
       <Link href={jobSlug}>
-        <Card className="cursor-pointer rounded-lg border border-white! bg-deep-dark p-4 text-white transition-all duration-300 hover:border-[#008be7] hover:bg-[#001e32] h-full flex flex-col shadow-none backdrop-blur-none">
+        <Card className="cursor-pointer rounded-lg border border_white! bg-deep-dark p-4 text-white transition-all duration-300 hover:border-[#008be7] hover:bg-[#001e32] h-full flex flex-col shadow-none backdrop-blur-none">
           <CardHeader className="relative pr-24">
             <p className="text-heading2 font-bold group-hover:text-light-blue transition-colors">
               {post.title}

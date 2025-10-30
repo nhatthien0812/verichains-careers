@@ -73,8 +73,7 @@ export function Header() {
               className="h-10"
             >
               <Link
-                href={siteConfig.links.substack}
-                target="_blank"
+                href="/jobs"
                 className="inline-flex items-center justify-center"
               >
                 View Jobs

@@ -23,54 +23,105 @@ export const features: Feature[] = [
     },
 ];
 
+const COMMON_REQUIREMENTS =
+    "Requirements\n" +
+    " • Minimum 3 years of relevant experience (preferably IT/Cybersecurity/BFSI).\n" +
+    " • Strong communication, presentation, and negotiation skills in Vietnamese and English.\n" +
+    " • Proactive, customer-oriented mindset with flexible problem-solving.\n" +
+    " • Team player with high ownership and accountability.";
+
+const COMMON_BENEFITS =
+    "Benefits\n" +
+    " • Work with Vietnam's top security engineers and experts.\n" +
+    " • Opportunity to build 'Make in Vietnam – Go Global' products.\n" +
+    " • Competitive salary and performance-based bonuses.\n" +
+    " • Dynamic, professional, globally-oriented environment.";
+
 export const listJobs: Post[] = [
     {
-        title: "Senior Blockchain Security Researcher",
-        link: "https://verichains.substack.com/p/senior-blockchain-security-researcher",
-        pubDate: "2025-10-15T00:00:00.000Z",
+        title: "Marketing Executive (Ho Chi Minh City)",
+        link: "mailto:phuong@verichains.io",
+        pubDate: "2025-10-30T00:00:00.000Z",
         contentSnippet:
-            "We're looking for an experienced security researcher to join our team. Deep knowledge of blockchain protocols, smart contracts, and cryptographic primitives required.",
-        imageUrl: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=450&fit=crop",
+            "Own multi-channel marketing campaigns, content production, and employer branding.",
+        content:
+            "Job Description\n" +
+            " • Plan and execute multi-channel marketing campaigns (social, email, website).\n" +
+            " • Produce content (articles, press, landing pages, case studies) aligned to goals.\n" +
+            " • Build employer branding and support recruitment initiatives.\n" +
+            " • Track, measure, and optimize campaign performance against KPIs.\n\n" +
+            COMMON_REQUIREMENTS +
+            "\n\n" +
+            COMMON_BENEFITS,
+        imageUrl: undefined,
     },
     {
-        title: "Full Stack Developer — Web3 Security Tools",
-        link: "https://verichains.substack.com/p/full-stack-developer",
-        pubDate: "2025-10-14T00:00:00.000Z",
+        title: "Business Development Executive (Ho Chi Minh City)",
+        link: "mailto:phuong@verichains.io",
+        pubDate: "2025-10-30T00:00:00.000Z",
         contentSnippet:
-            "Join our engineering team to build cutting-edge security tools for the Web3 ecosystem. React, TypeScript, and Solidity experience preferred.",
-        imageUrl: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=450&fit=crop",
+            "Acquire and grow enterprise customers for cybersecurity and the BShield mobile solution.",
+        content:
+            "Job Description\n" +
+            " • Prospect and develop new enterprise customers.\n" +
+            " • Consult and propose cybersecurity and BShield Mobile solutions.\n" +
+            " • Coordinate with engineering/product/marketing throughout the sales process.\n" +
+            " • Manage pipeline, forecast revenue, and report regularly.\n\n" +
+            COMMON_REQUIREMENTS +
+            "\n\n" +
+            COMMON_BENEFITS,
+        imageUrl: undefined,
     },
     {
-        title: "Security Audit Lead",
-        link: "https://verichains.substack.com/p/security-audit-lead",
-        pubDate: "2025-10-06T00:00:00.000Z",
+        title: "BFSI Account Manager (Hanoi & Ho Chi Minh City)",
+        link: "mailto:phuong@verichains.io",
+        pubDate: "2025-10-30T00:00:00.000Z",
         contentSnippet:
-            "Lead our security audit team and work with top DeFi protocols. Strong background in smart contract security and team leadership required.",
-        imageUrl: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=450&fit=crop",
+            "Own relationships and revenue with banking, fintech, and digital service clients.",
+        content:
+            "Job Description\n" +
+            " • Manage and grow relationships with banking, fintech, and digital service clients.\n" +
+            " • Understand needs, consult, and propose the right BShield mobile security solutions.\n" +
+            " • Coordinate with engineering, product, and marketing to ensure delivery and service quality.\n" +
+            " • Expand revenue from existing accounts (upsell/cross-sell) and track account health.\n\n" +
+            COMMON_REQUIREMENTS +
+            "\n\n" +
+            COMMON_BENEFITS,
+        imageUrl: undefined,
     },
     {
-        title: "Smart Contract Auditor",
-        link: "https://verichains.substack.com/p/smart-contract-auditor",
-        pubDate: "2025-09-29T00:00:00.000Z",
+        title: "Head of BD & Sales (Hanoi)",
+        link: "mailto:phuong@verichains.io",
+        pubDate: "2025-10-30T00:00:00.000Z",
         contentSnippet:
-            "Conduct comprehensive security audits of smart contracts and DeFi protocols. Experience with Solidity, Vyper, and security testing tools required.",
-        imageUrl: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=450&fit=crop",
+            "Lead the GTM strategy and sales organization to drive growth.",
+        content:
+            "Job Description\n" +
+            " • Define business strategy and GTM plans for target segments.\n" +
+            " • Lead, coach, and scale the BD/Sales team; set KPIs and processes.\n" +
+            " • Partner with marketing/product to optimize funnel and sales efficiency.\n" +
+            " • Allocate resources, forecast revenue, and own commercial outcomes.\n\n" +
+            COMMON_REQUIREMENTS +
+            "\n\n" +
+            COMMON_BENEFITS,
+        imageUrl: undefined,
     },
     {
-        title: "Blockchain Security Engineer",
-        link: "https://verichains.substack.com/p/blockchain-security-engineer",
-        pubDate: "2025-09-25T00:00:00.000Z",
+        title: "Mobile Solution Engineer (Hanoi & Ho Chi Minh City)",
+        link: "mailto:phuong@verichains.io",
+        pubDate: "2025-10-30T00:00:00.000Z",
         contentSnippet:
-            "Design and implement security solutions for blockchain infrastructure. Strong background in cryptography, consensus mechanisms, and security protocols.",
-        imageUrl: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=450&fit=crop",
-    },
-    {
-        title: "DeFi Security Specialist",
-        link: "https://verichains.substack.com/p/defi-security-specialist",
-        pubDate: "2025-09-09T00:00:00.000Z",
-        contentSnippet:
-            "Specialize in DeFi protocol security analysis and risk assessment. Deep understanding of DeFi mechanics, yield farming, and liquidity protocols.",
-        imageUrl: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=450&fit=crop",
+            "Implement the BShield mobile security solution and support customers with integrations.",
+        content:
+            "Job Description\n" +
+            " • Implement, integrate, and configure BShield for Android/iOS applications.\n" +
+            " • Analyze and troubleshoot technical issues with internal teams and customers.\n" +
+            " • Write technical docs, prepare demos/POCs, and deliver training.\n" +
+            " • Provide product feedback and improvement suggestions from real-world deployments.\n\n" +
+            COMMON_REQUIREMENTS +
+            "\n\n" +
+            COMMON_BENEFITS,
+        imageUrl: undefined,
     },
 ];
 

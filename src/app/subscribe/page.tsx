@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { SubscribeCta } from "@/components/subscribe-cta";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,12 +8,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
-import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Subscribe",
-  description:
-    "Subscribe to Verichains Substack newsletter to stay updated on new job openings and company updates.",
+  description: "Stay updated on Verichains job openings and company updates.",
 };
 
 export default function SubscribePage() {
@@ -31,14 +28,12 @@ export default function SubscribePage() {
         <div className="text-center mb-12 space-y-4">
           <h1 className="text-heading font-bold">Stay Connected</h1>
           <p className="text-base leading-6 text-white max-w-2xl mx-auto">
-            Subscribe to our Substack newsletter to get the latest updates on
-            job opportunities, company news, and security research.
+            Get the latest updates on job opportunities, company news, and
+            security research from Verichains.
           </p>
         </div>
 
         <div className="space-y-8">
-          <SubscribeCta />
-
           <Card>
             <CardHeader>
               <CardTitle className="text-heading font-bold">
@@ -69,20 +64,10 @@ export default function SubscribePage() {
                 Ready to Join Our Team?
               </h3>
               <p className="text-base leading-6 text-white mb-6">
-                View all our current job openings on Substack or check out our
-                job listings page.
+                Browse all our current job openings on our careers portal.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild variant="gradient" size="lg">
-                  <a
-                    href={siteConfig.links.substack}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View All Jobs on Substack
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="lg">
+              <div className="flex justify-center">
+                <Button asChild className="bg-light-blue text-white" size="lg">
                   <a href="/jobs">Browse Job Listings</a>
                 </Button>
               </div>

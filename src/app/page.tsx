@@ -51,8 +51,7 @@ export default async function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button asChild variant="default" size="lg" showChevron={false}>
                 <a
-                  href={siteConfig.links.substack}
-                  target="_blank"
+                  href="/jobs"
                   className="inline-flex items-center justify-center"
                 >
                   View Open Positions

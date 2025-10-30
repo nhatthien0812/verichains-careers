@@ -4,7 +4,7 @@ import { getSubstackPosts } from "@/lib/rss";
 import { listJobs } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 
@@ -19,17 +19,12 @@ async function getPosts() {
   }
 }
 
+function toSlug(title: string) {
+  return title.toLowerCase().replace(/\s+/g, "-");
+}
+
 function getPostBySlug(posts: typeof listJobs, slug: string) {
-  // Try to find post by matching slug in the link
-  const post = posts.find((p) => {
-    const postSlug = p.link.split("/").pop() || "";
-    const titleSlug = p.title.toLowerCase().replace(/\s+/g, "-");
-    return (
-      postSlug === slug ||
-      titleSlug === slug ||
-      decodeURIComponent(postSlug) === slug
-    );
-  });
+  const post = posts.find((p) => toSlug(p.title) === slug);
   return post;
 }
 
@@ -67,9 +62,7 @@ export async function generateMetadata({
 export async function generateStaticParams() {
   const posts = await getPosts();
   return posts.map((post) => {
-    const slug =
-      post.link.split("/").pop() ||
-      post.title.toLowerCase().replace(/\s+/g, "-");
+    const slug = toSlug(post.title);
     return {
       slug: encodeURIComponent(slug),
     };
@@ -102,6 +95,15 @@ export default async function JobDetailPage({
     }
   };
 
+  const paragraphs = (post.content || post.contentSnippet)
+    .split(/\n\n+/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  const email = post.link.startsWith("mailto:")
+    ? post.link.replace(/^mailto:/, "")
+    : post.link;
+
   return (
     <div className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-4xl">
@@ -125,28 +127,24 @@ export default async function JobDetailPage({
             </p>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="prose prose-invert max-w-none">
-              <p className="text-base leading-6 text-white">
-                {post.contentSnippet}
-              </p>
+            <div className="prose prose-invert max-w-none space-y-4">
+              {paragraphs.map((para, idx) => (
+                <p
+                  key={idx}
+                  className="text-base leading-6 text-white whitespace-pre-line"
+                >
+                  {para}
+                </p>
+              ))}
             </div>
 
             <div className="pt-6 border-t border-vc-muted/20">
-              <p className="text-base leading-6 text-white mb-4">
-                For full job details and to apply, please visit our Substack
-                post:
+              <p className="text-base leading-6 text-white mb-3">
+                Contact email
               </p>
-              <Button
-                asChild
-                variant="gradient"
-                size="lg"
-                className="w-full sm:w-auto"
-              >
-                <a href={post.link} target="_blank" rel="noopener noreferrer">
-                  View Full Job Posting on Substack
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
+              <div className="inline-flex items-center rounded-md border border-light-blue/40 bg-light-blue/10 px-4 py-2 text-light-blue font-medium">
+                {email}
+              </div>
             </div>
           </CardContent>
         </Card>
