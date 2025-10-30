@@ -6,8 +6,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { VerichainsLogo } from "@/components/verichains-logo";
 import { VerichainsLogoIcon } from "@/components/verichains-logo-icon";
-import { siteConfig } from "@/config/site";
-import { ChevronRight, Menu } from "lucide-react";
+import { ChevronRight, Menu, X } from "lucide-react";
 
 export function Header() {
   const pathname = usePathname();
@@ -20,32 +19,33 @@ export function Header() {
     { href: "/subscribe", label: "Subscribe" },
   ];
 
-  // Check if current path matches item (including /jobs/[slug])
   const isActive = (href: string) => {
-    if (href === "/") {
-      return pathname === "/";
-    }
+    if (href === "/") return pathname === "/";
     return pathname?.startsWith(href);
   };
 
   return (
     <header className="sticky top-0 z-[99] bg-deep-dark/70 py-3 text-[12px] leading-[18px] text-white backdrop-blur-sm">
-      <div className="relative mx-auto flex max-w-[1366px] items-center text-white xl:px-36">
+      <div className="relative mx-auto flex max-w-[1366px] items-center text-white xl:px-36 px-4">
         {/* Mobile Menu Button */}
         <Button
           variant="ghost"
           size="icon"
-          className="xl:hidden text-white z-[999] ml-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="xl:hidden text-white mr-2"
+          onClick={() => setIsMobileMenuOpen((v) => !v)}
           aria-label="Toggle menu"
         >
-          <Menu className="h-6 w-6" />
+          {isMobileMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
         </Button>
 
         {/* Logo */}
         <Link href="/" className="mr-auto block">
           <VerichainsLogo height={32} className="max-xl:hidden" />
-          <div className="xl:hidden flex items-center space-x-2">
+          <div className="xl:hidden flex items-center">
             <VerichainsLogoIcon size={24} className="h-6 w-6" />
           </div>
         </Link>
@@ -65,13 +65,7 @@ export function Header() {
             </li>
           ))}
           <li>
-            <Button
-              asChild
-              variant="default"
-              size="sm"
-              showChevron={false}
-              className="h-10"
-            >
+            <Button asChild variant="default" size="sm" showChevron={false}>
               <Link
                 href="/jobs"
                 className="inline-flex items-center justify-center"
@@ -83,6 +77,33 @@ export function Header() {
           </li>
         </ul>
       </div>
+
+      {/* Mobile Navigation Panel */}
+      {isMobileMenuOpen && (
+        <div className="xl:hidden bg-deep-dark/95 border-t border-vc-muted/20">
+          <nav className="px-4 py-3 space-y-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`block py-3 text-white ${
+                  isActive(item.href) ? "text-light-blue" : ""
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link
+              href="/jobs"
+              className="block py-3 text-light-blue font-medium"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              View Jobs
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

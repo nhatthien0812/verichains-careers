@@ -41,10 +41,12 @@ export function JobList({ posts, isLoading }: JobListProps) {
     );
   }
 
+  const toSlug = (title: string) => title.toLowerCase().replace(/\s+/g, "-");
+
   return (
     <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
       {posts.map((post, index) => (
-        <JobCard key={post.link} post={post} index={index} />
+        <JobCard key={toSlug(post.title)} post={post} index={index} />
       ))}
     </div>
   );
