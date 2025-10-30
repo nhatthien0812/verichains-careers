@@ -30,7 +30,7 @@ export function Header() {
         <Button
           variant="ghost"
           size="icon"
-          className="xl:hidden text-white mr-2 mb-3"
+          className="xl:hidden text-white mr-2 max-md:mb-3"
           onClick={() => setIsMobileMenuOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -42,15 +42,17 @@ export function Header() {
         </Button>
 
         {/* Logo */}
-        <Link href="/" className="mr-auto block mb-3">
-          <VerichainsLogo height={32} className="max-xl:hidden" />
+        <Link href="/" className="mr-auto block max-md:mb-3">
+          <div className="max-xl:hidden">
+            <VerichainsLogo height={28} className="md:h-8 lg:h-9" />
+          </div>
           <div className="xl:hidden flex items-center">
             <VerichainsLogoIcon size={24} className="h-6 w-6" />
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <ul className="inline-flex h-10 items-center gap-x-8 max-xl:hidden">
+        <ul className="inline-flex w-10 h-10 items-center gap-x-8 max-xl:hidden">
           {navItems.map((item) => (
             <li key={item.href}>
               <Link
