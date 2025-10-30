@@ -36,7 +36,7 @@ export default async function Home() {
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-heading font-bold tracking-tight">
-              Join Asia&apos;s Leading
+              Join
               <div className="block mt-2 text-light-blue">
                 Blockchain Security Team
               </div>
