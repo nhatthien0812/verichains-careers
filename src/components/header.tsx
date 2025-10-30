@@ -16,7 +16,6 @@ export function Header() {
     { href: "/", label: "Home" },
     { href: "/jobs", label: "Jobs" },
     { href: "/about", label: "About" },
-    { href: "/subscribe", label: "Subscribe" },
   ];
 
   const isActive = (href: string) => {

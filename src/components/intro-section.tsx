@@ -7,11 +7,14 @@ import { features } from "@/lib/data";
 export function IntroSection() {
   const rootRef = useRef<HTMLDivElement>(null);
   const scopeRef = useRef<any>(null);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
     if (!rootRef.current) return;
 
     const runAnimation = () => {
+      if (hasAnimated.current) return;
+      hasAnimated.current = true;
       if (!rootRef.current) return;
 
       // Set initial styles inline
@@ -101,6 +104,7 @@ export function IntroSection() {
       if (scopeRef.current) {
         scopeRef.current.revert();
       }
+      hasAnimated.current = false;
     };
   }, []);
 

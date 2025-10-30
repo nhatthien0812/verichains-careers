@@ -1,8 +1,7 @@
+import { IntroSection } from "@/components/intro-section";
 import { JobList } from "@/components/job-list";
 import { SubscribeCta } from "@/components/subscribe-cta";
-import { IntroSection } from "@/components/intro-section";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/config/site";
 import { listJobs } from "@/lib/data";
 import { getSubstackPosts } from "@/lib/rss";
 import { ArrowRight } from "lucide-react";
@@ -63,9 +62,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Intro Section */}
-      <IntroSection />
-
       {/* Jobs Section */}
       <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
@@ -83,12 +79,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Subscribe CTA */}
-      <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-vc-surface/10">
-        <div className="container mx-auto max-w-4xl">
-          <SubscribeCta />
-        </div>
-      </section>
+      <IntroSection />
     </div>
   );
 }
