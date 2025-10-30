@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: "dist",
   eslint: {
     // Ignore ESLint errors during production builds (CI/Vercel)
     ignoreDuringBuilds: true,
