@@ -1,0 +1,22 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="appleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0E76FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#22C55E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="appleShieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f0f0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="96" cy="96" r="88" fill="url(#appleGradient)" stroke="#ffffff" stroke-width="4" opacity="0.1"/>
+  
+  <!-- Security shield -->
+  <path d="M36 36 L60 12 L84 36 L84 84 C84 96 72 108 60 108 C48 108 36 96 36 84 Z" fill="url(#appleShieldGradient)" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- V letter inside shield -->
+  <path d="M48 48 L54 78 L60 48 M66 48 L72 78 L78 48" stroke="#0E76FD" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

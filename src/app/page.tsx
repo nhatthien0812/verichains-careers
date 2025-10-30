@@ -1,65 +1,95 @@
-import Image from "next/image";
+import { JobList } from "@/components/job-list";
+import { SubscribeCta } from "@/components/subscribe-cta";
+import { IntroSection } from "@/components/intro-section";
+import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/config/site";
+import { listJobs } from "@/lib/data";
+import { getSubstackPosts } from "@/lib/rss";
+import { ArrowRight } from "lucide-react";
+import { Suspense } from "react";
 
-export default function Home() {
+async function getPosts() {
+  try {
+    const posts = await getSubstackPosts(6);
+    return posts.length > 0 ? posts : listJobs;
+  } catch {
+    return listJobs;
+  }
+}
+
+export default async function Home() {
+  const posts = await getPosts();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex flex-col">
+      {/* Hero Section */}
+      <section
+        className="relative overflow-hidden py-20 lg:py-32 px-4 sm:px-6 lg:px-8"
+        style={{
+          backgroundImage:
+            "url(https://verichains.io/_next/static/media/0.04701e1b.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="container mx-auto relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h1 className="text-heading font-bold tracking-tight">
+              Join Asia&apos;s Leading
+              <div className="block mt-2 text-light-blue">
+                Blockchain Security Team
+              </div>
+            </h1>
+            <p className="text-base leading-6 font-normal text-white max-w-2xl mx-auto">
+              Build the future of secure Web3 infrastructure with{" "}
+              <span className="text-light-blue">Verichains</span>. We&apos;re
+              hiring talented security researchers, engineers, and blockchain
+              experts.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <Button asChild variant="default" size="lg" showChevron={false}>
+                <a
+                  href={siteConfig.links.substack}
+                  target="_blank"
+                  className="inline-flex items-center justify-center"
+                >
+                  View Open Positions
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Intro Section */}
+      <IntroSection />
+
+      {/* Jobs Section */}
+      <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto">
+          <div className="mb-12 text-center">
+            <h2 className="text-heading font-bold mb-4">
+              Open <span className="text-light-blue"> Positions</span>
+            </h2>
+            <p className="text-base leading-6 text-white">
+              Explore our current openings and find your next opportunity
+            </p>
+          </div>
+          <Suspense fallback={<JobList isLoading={true} posts={[]} />}>
+            <JobList posts={posts} />
+          </Suspense>
         </div>
-      </main>
+      </section>
+
+      {/* Subscribe CTA */}
+      <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-vc-surface/10">
+        <div className="container mx-auto max-w-4xl">
+          <SubscribeCta />
+        </div>
+      </section>
     </div>
   );
 }

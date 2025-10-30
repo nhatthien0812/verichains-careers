@@ -1,26 +1,386 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Verichains Brand Colors - Based on verichains.io */
+  --vc-primary: #0e76fd;
+  --vc-primary-dark: #0a5bc4;
+  --vc-secondary: #22c55e;
+  --vc-secondary-dark: #16a34a;
+  --vc-bg: #000000;
+  --vc-bg-secondary: #0a0a0a;
+  --vc-surface: #111111;
+  --vc-surface-hover: #1a1a1a;
+  --vc-muted: #a3a3a3;
+  --vc-muted-dark: #737373;
+  --vc-accent: #22c55e;
+  --vc-accent-dark: #16a34a;
+  --light-blue: 190 94% 46%;
+  --lighter-blue: hsl(190 94% 46%);
+  --electric-sky: hsl(190 94% 46%);
+  --light-grey: rgba(255, 255, 255, 0.15);
+  --deep-dark: rgba(0, 0, 0, 0.8);
+  --radius: 0.5rem;
+
+  /* Semantic Colors */
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: rgba(255, 255, 255, 0.02);
+  --card-hover: rgba(255, 255, 255, 0.04);
+  --card-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.15);
+  --muted: #a3a3a3;
+  --muted-foreground: #737373;
+  --accent: #22c55e;
+  --accent-foreground: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-vc-primary: var(--vc-primary);
+  --color-vc-primary-dark: var(--vc-primary-dark);
+  --color-vc-secondary: var(--vc-secondary);
+  --color-vc-secondary-dark: var(--vc-secondary-dark);
+  --color-vc-bg: var(--vc-bg);
+  --color-vc-bg-secondary: var(--vc-bg-secondary);
+  --color-vc-surface: var(--vc-surface);
+  --color-vc-surface-hover: var(--vc-surface-hover);
+  --color-vc-muted: var(--vc-muted);
+  --color-vc-muted-dark: var(--vc-muted-dark);
+  --color-vc-accent: var(--vc-accent);
+  --color-vc-accent-dark: var(--vc-accent-dark);
+  --color-light-blue: hsl(var(--light-blue));
+  --font-sans: var(--font-poppins, "Poppins"), system-ui, -apple-system,
+    sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* TailwindCSS 4 custom color utilities */
+@layer utilities {
+  /* Primary Colors */
+  .bg-vc-primary {
+    background-color: var(--vc-primary);
+  }
+  .text-vc-primary {
+    color: var(--vc-primary);
+  }
+  .border-vc-primary {
+    border-color: var(--vc-primary);
+  }
+  .bg-vc-primary-dark {
+    background-color: var(--vc-primary-dark);
+  }
+  .text-vc-primary-dark {
+    color: var(--vc-primary-dark);
+  }
+
+  /* Secondary Colors */
+  .bg-vc-secondary {
+    background-color: var(--vc-secondary);
+  }
+  .text-vc-secondary {
+    color: var(--vc-secondary);
+  }
+  .bg-vc-secondary-dark {
+    background-color: var(--vc-secondary-dark);
+  }
+
+  /* Background Colors */
+  .bg-vc-bg {
+    background-color: var(--vc-bg);
+  }
+  .bg-vc-bg-secondary {
+    background-color: var(--vc-bg-secondary);
+  }
+  .bg-vc-surface {
+    background-color: var(--vc-surface);
+  }
+  .bg-vc-surface-hover {
+    background-color: var(--vc-surface-hover);
+  }
+
+  /* Muted Colors */
+  .text-vc-muted {
+    color: var(--vc-muted);
+  }
+  .text-vc-muted-dark {
+    color: var(--vc-muted-dark);
+  }
+  .bg-vc-muted {
+    background-color: var(--vc-muted);
+  }
+  .border-vc-muted {
+    border-color: var(--vc-muted);
+  }
+
+  /* Accent Colors */
+  .text-vc-accent {
+    color: var(--vc-accent);
+  }
+  .bg-vc-accent {
+    background-color: var(--vc-accent);
+  }
+  .text-vc-accent-dark {
+    color: var(--vc-accent-dark);
+  }
+  .bg-vc-accent-dark {
+    background-color: var(--vc-accent-dark);
+  }
+
+  /* Light Blue Colors */
+  .bg-lighter-blue {
+    background-color: var(--lighter-blue);
+  }
+  .bg-light-blue {
+    background-color: hsl(var(--light-blue));
+  }
+  .text-light-blue {
+    color: hsl(var(--light-blue));
+  }
+  .border-light-blue {
+    border-color: hsl(var(--light-blue));
+  }
+
+  /* Card Colors */
+  .border-light-grey {
+    border-color: var(--light-grey);
+  }
+  .bg-deep-dark {
+    background-color: var(--deep-dark);
+  }
+
+  /* Electric Sky Color */
+  .bg-electric-sky {
+    background-color: var(--electric-sky);
+  }
+  .text-electric-sky {
+    color: var(--electric-sky);
+  }
+  .border-electric-sky {
+    border-color: var(--electric-sky);
+  }
+
+  /* Gradient Utilities */
+  .bg-vc-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--vc-primary) 0%,
+      var(--vc-secondary) 100%
+    );
+  }
+  .bg-vc-gradient-dark {
+    background: linear-gradient(
+      135deg,
+      var(--vc-primary-dark) 0%,
+      var(--vc-secondary-dark) 100%
+    );
+  }
+  .text-vc-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--vc-primary) 0%,
+      var(--vc-secondary) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Common Button Styles */
+  .btn-primary {
+    position: relative;
+    background: var(--vc-primary);
+    color: white;
+    border: 1px solid var(--vc-primary);
+    transition: all 0.3s ease;
+    overflow: visible;
+  }
+  .btn-primary::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--lighter-blue);
+    opacity: 0;
+    filter: blur(16px);
+    transition: opacity 0.3s ease;
+  }
+  .btn-primary:hover {
+    background: #001e32;
+    border-color: #008be7;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 139, 231, 0.3);
+  }
+  .btn-primary:hover::before {
+    opacity: 1;
+  }
+
+  .btn-secondary {
+    background: var(--vc-secondary);
+    color: white;
+    border: 1px solid var(--vc-secondary);
+    transition: all 0.3s ease;
+  }
+  .btn-secondary:hover {
+    background: var(--vc-secondary-dark);
+    border-color: var(--vc-secondary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  }
+
+  .btn-gradient {
+    position: relative;
+    background: linear-gradient(
+      135deg,
+      var(--vc-primary) 0%,
+      var(--vc-secondary) 100%
+    );
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+    overflow: visible;
+  }
+  .btn-gradient::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--lighter-blue);
+    opacity: 0;
+    filter: blur(16px);
+    transition: opacity 0.3s ease;
+  }
+  .btn-gradient:hover {
+    background: #001e32;
+    border: 1px solid #008be7;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 139, 231, 0.4);
+  }
+  .btn-gradient:hover::before {
+    opacity: 1;
+  }
+
+  .btn-outline {
+    position: relative;
+    background: transparent;
+    color: var(--vc-primary);
+    border: 1px solid var(--vc-primary);
+    transition: all 0.3s ease;
+    overflow: visible;
+  }
+  .btn-outline::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--lighter-blue);
+    opacity: 0;
+    filter: blur(16px);
+    transition: opacity 0.3s ease;
+  }
+  .btn-outline:hover {
+    background: #001e32;
+    border-color: #008be7;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 139, 231, 0.2);
+  }
+  .btn-outline:hover::before {
+    opacity: 1;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--vc-muted);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+  .btn-ghost:hover {
+    background: var(--vc-surface);
+    color: white;
+    border-color: var(--vc-muted);
+  }
+
+  .btn-glass {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+  .btn-glass:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 }
 
+* {
+  border-color: var(--border);
+}
+
 body {
-  background: var(--background);
+  background: var(--vc-bg);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glass morphism effect - Enhanced for verichains.io style */
+.glass {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.glass-hover {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced card styles */
+.card-glass {
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.card-glass:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Typography */
+.text-heading {
+  font-size: 40px;
+  line-height: 52px;
+}
+.text-heading2 {
+  font-size: 24px;
+  line-height: 36px;
 }
