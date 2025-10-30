@@ -73,7 +73,7 @@ export function Footer() {
 
         <Separator className="my-8" />
 
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="text-center">
           <p className="text-sm text-vc-muted">
             © {new Date().getFullYear()}{" "}
             <span className="text-light-blue">Verichains</span>. All rights

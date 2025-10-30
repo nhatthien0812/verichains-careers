@@ -24,13 +24,13 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-[99] bg-deep-dark/70 py-3 text-[12px] leading-[18px] text-white backdrop-blur-sm">
+    <header className="sticky top-0 z-99 bg-deep-dark/70 py-3 text-[12px] leading-[18px] text-white backdrop-blur-sm">
       <div className="relative mx-auto flex max-w-[1366px] items-center text-white xl:px-36 px-4">
         {/* Mobile Menu Button */}
         <Button
           variant="ghost"
           size="icon"
-          className="xl:hidden text-white mr-2"
+          className="xl:hidden text-white mr-2 mb-3"
           onClick={() => setIsMobileMenuOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -42,7 +42,7 @@ export function Header() {
         </Button>
 
         {/* Logo */}
-        <Link href="/" className="mr-auto block">
+        <Link href="/" className="mr-auto block mb-3">
           <VerichainsLogo height={32} className="max-xl:hidden" />
           <div className="xl:hidden flex items-center">
             <VerichainsLogoIcon size={24} className="h-6 w-6" />
@@ -68,7 +68,7 @@ export function Header() {
 
       {/* Mobile Navigation Panel */}
       {isMobileMenuOpen && (
-        <div className="xl:hidden bg-deep-dark/95 border-t border-vc-muted/20">
+        <div className="xl:hidden bg-deep-dark/95 border-t border-vc-muted/20 ">
           <nav className="px-4 py-3 space-y-2">
             {navItems.map((item) => (
               <Link
