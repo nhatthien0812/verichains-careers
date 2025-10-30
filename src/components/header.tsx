@@ -64,17 +64,6 @@ export function Header() {
               </Link>
             </li>
           ))}
-          <li>
-            <Button asChild variant="default" size="sm" showChevron={false}>
-              <Link
-                href="/jobs"
-                className="inline-flex items-center justify-center"
-              >
-                View Jobs
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </li>
         </ul>
       </div>
 
