@@ -18,38 +18,14 @@ export function IntroSection() {
   const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!rootRef.current) return;
+    if (!rootRef.current || hasAnimated.current) return;
 
     const runAnimation = () => {
       if (hasAnimated.current) return;
       hasAnimated.current = true;
       if (!rootRef.current) return;
 
-      // Set initial styles inline
-      const title = rootRef.current.querySelector(
-        ".intro-title"
-      ) as HTMLElement;
-      const cards = rootRef.current.querySelectorAll(
-        ".intro-feature-card"
-      ) as NodeListOf<HTMLElement>;
-      const descCard = rootRef.current.querySelector(
-        ".intro-description"
-      ) as HTMLElement;
-
-      if (title) {
-        title.style.opacity = "0";
-        title.style.transform = "translateY(30px)";
-      }
-      cards.forEach((card) => {
-        card.style.opacity = "0";
-        card.style.transform = "translateY(40px) scale(0.9)";
-      });
-      if (descCard) {
-        descCard.style.opacity = "0";
-        descCard.style.transform = "translateY(30px)";
-      }
-
-      // Now animate
+      // Animate elements
       scopeRef.current = createScope({ root: rootRef.current }).add(() => {
         // Animate title - fade in + slide up
         animate(".intro-title", {
@@ -84,7 +60,7 @@ export function IntroSection() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !hasAnimated.current) {
             runAnimation();
             observer.disconnect();
           }
@@ -95,9 +71,9 @@ export function IntroSection() {
 
     observer.observe(rootRef.current);
 
-    // Fallback: animate immediately if already in view or after 500ms
-    setTimeout(() => {
-      if (rootRef.current) {
+    // Fallback: animate immediately if already in view after a short delay
+    const timeoutId = setTimeout(() => {
+      if (rootRef.current && !hasAnimated.current) {
         const rect = rootRef.current.getBoundingClientRect();
         const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
         if (isVisible) {
@@ -108,11 +84,11 @@ export function IntroSection() {
     }, 400);
 
     return () => {
+      clearTimeout(timeoutId);
       observer.disconnect();
       if (scopeRef.current) {
         scopeRef.current.revert();
       }
-      hasAnimated.current = false;
     };
   }, []);
 
@@ -125,7 +101,10 @@ export function IntroSection() {
       <div className="container mx-auto max-w-6xl">
         {/* Title */}
         <div className="text-center mb-8">
-          <h2 className="text-heading font-bold intro-title mb-4">
+          <h2
+            className="text-heading font-bold intro-title mb-4"
+            style={{ opacity: 0, transform: "translateY(30px)" }}
+          >
             Why <span className="text-light-blue">Verichains</span>?
           </h2>
         </div>
@@ -136,6 +115,7 @@ export function IntroSection() {
             <Card
               key={idx}
               className="p-6 text-center border-vc-muted/20 bg-linear-to-br from-vc-surface/30 to-vc-surface/10 hover:from-vc-surface/40 hover:to-vc-surface/20 transition-all duration-300 intro-feature-card"
+              style={{ opacity: 0, transform: "translateY(40px) scale(0.9)" }}
             >
               <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-light-blue mb-2">
                 {item.value}
@@ -148,7 +128,10 @@ export function IntroSection() {
         </div>
 
         {/* Description */}
-        <div className="max-w-4xl mx-auto intro-description">
+        <div
+          className="max-w-4xl mx-auto intro-description"
+          style={{ opacity: 0, transform: "translateY(30px)" }}
+        >
           <Card className="p-8 lg:p-10 border-vc-muted/20 bg-vc-surface/20 backdrop-blur-sm">
             <div className="space-y-6 text-base leading-7 text-white">
               <p>

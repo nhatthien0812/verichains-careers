@@ -1,15 +1,13 @@
-import Link from "next/link";
-import { siteConfig } from "@/config/site";
 import { Separator } from "@/components/ui/separator";
 import { VerichainsLogo } from "@/components/verichains-logo";
-import { Linkedin, Twitter, Facebook, Send } from "lucide-react";
+import { siteConfig } from "@/config/site";
+import { Facebook, Linkedin, Twitter } from "lucide-react";
 
 export function Footer() {
   const socialLinks = [
     { icon: Linkedin, href: siteConfig.links.linkedin, label: "LinkedIn" },
     { icon: Twitter, href: siteConfig.links.twitter, label: "Twitter" },
     { icon: Facebook, href: siteConfig.links.facebook, label: "Facebook" },
-    { icon: Send, href: siteConfig.links.telegram, label: "Telegram" },
   ];
 
   return (
@@ -18,7 +16,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="space-y-4 lg:col-span-2">
-            <VerichainsLogo height={40} showText={true} className="!block" />
+            <VerichainsLogo height={40} showText={true} className="block!" />
             <p className="text-base leading-6 text-white max-w-md">
               Asia&apos;s leading blockchain security firm. Building the future
               of secure Web3 infrastructure.
