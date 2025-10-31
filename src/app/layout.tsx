@@ -38,6 +38,14 @@ export const metadata: Metadata = {
     description:
       "Explore job opportunities at Verichains — Asia's leading blockchain security firm.",
     siteName: "Verichains Careers",
+    images: [
+      {
+        url: "/verichains-logo.svg",
+        width: 800,
+        height: 600,
+        alt: "Verichains Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -45,6 +53,7 @@ export const metadata: Metadata = {
     description:
       "Explore job opportunities at Verichains — Asia's leading blockchain security firm.",
     creator: "@verichains",
+    images: ["/verichains-logo.svg"],
   },
   robots: {
     index: true,
