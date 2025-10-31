@@ -1,10 +1,7 @@
 import { IntroSection } from "@/components/intro-section";
 import { JobList } from "@/components/job-list";
-import { SubscribeCta } from "@/components/subscribe-cta";
-import { Button } from "@/components/ui/button";
 import { listJobs } from "@/lib/data";
 import { getSubstackPosts } from "@/lib/rss";
-import { ArrowRight } from "lucide-react";
 import { Suspense } from "react";
 
 async function getPosts() {

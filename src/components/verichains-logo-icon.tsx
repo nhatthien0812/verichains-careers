@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface LogoIconProps {
   className?: string;
@@ -10,7 +11,7 @@ export function VerichainsLogoIcon({
   size = 32,
 }: LogoIconProps) {
   return (
-    <img
+    <Image
       src="/favicon.ico"
       width={size}
       height={size}
