@@ -108,7 +108,7 @@ export default async function JobDetailPage({
     <div className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-4xl">
         <Link
-          href="/jobs"
+          href="/#jobs"
           className="inline-flex items-center text-base leading-6 text-vc-muted hover:text-white transition-colors mb-8"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
@@ -151,7 +151,7 @@ export default async function JobDetailPage({
 
         <div className="mt-8 text-center">
           <Link
-            href="/jobs"
+            href="/#jobs"
             className="text-base leading-6 text-vc-muted hover:text-white transition-colors"
           >
             ← View all job openings

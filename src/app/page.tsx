@@ -36,34 +36,27 @@ export default async function Home() {
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-heading font-bold tracking-tight">
-              Join
-              <div className="block mt-2 text-light-blue">
-                Blockchain Security Team
-              </div>
+              Join{" "}
+              <span className="mt-2 text-light-blue">
+                Global Leading Security
+              </span>{" "}
+              institutions
             </h1>
             <p className="text-base leading-6 font-normal text-white max-w-2xl mx-auto">
-              Build the future of secure Web3 infrastructure with{" "}
-              <span className="text-light-blue">Verichains</span>. We&apos;re
-              hiring talented security researchers, engineers, and blockchain
-              experts.
+              We are expanding rapidly and seeking talented individuals
+              passionate about technology, security, and mobile solutions to
+              join us in writing the next chapter of our &apos;Go Global&apos;
+              journey.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button asChild variant="default" size="lg" showChevron={false}>
-                <a
-                  href="/jobs"
-                  className="inline-flex items-center justify-center"
-                >
-                  View Open Positions
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Jobs Section */}
-      <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <section
+        id="jobs"
+        className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 scroll-mt-20"
+      >
         <div className="container mx-auto">
           <div className="mb-12 text-center">
             <h2 className="text-heading font-bold mb-4">

@@ -1,10 +1,18 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { animate, createScope } from "animejs";
-import { features } from "@/lib/data";
+import { useEffect, useRef } from "react";
+
+import { Card } from "./ui/card";
 
 export function IntroSection() {
+  const highlights = [
+    { value: "$100B+", label: "Protected Assets" },
+    { value: "200M+", label: "Protected Devices" },
+    { value: "200K+", label: "Monthly Attacks Blocked" },
+    { value: "7+", label: "Years Experience" },
+  ];
+
   const rootRef = useRef<HTMLDivElement>(null);
   const scopeRef = useRef<any>(null);
   const hasAnimated = useRef(false);
@@ -21,25 +29,25 @@ export function IntroSection() {
       const title = rootRef.current.querySelector(
         ".intro-title"
       ) as HTMLElement;
-      const description = rootRef.current.querySelector(
-        ".intro-description"
-      ) as HTMLElement;
       const cards = rootRef.current.querySelectorAll(
         ".intro-feature-card"
       ) as NodeListOf<HTMLElement>;
+      const descCard = rootRef.current.querySelector(
+        ".intro-description"
+      ) as HTMLElement;
 
       if (title) {
         title.style.opacity = "0";
         title.style.transform = "translateY(30px)";
       }
-      if (description) {
-        description.style.opacity = "0";
-        description.style.transform = "translateY(20px)";
-      }
       cards.forEach((card) => {
         card.style.opacity = "0";
         card.style.transform = "translateY(40px) scale(0.9)";
       });
+      if (descCard) {
+        descCard.style.opacity = "0";
+        descCard.style.transform = "translateY(30px)";
+      }
 
       // Now animate
       scopeRef.current = createScope({ root: rootRef.current }).add(() => {
@@ -47,16 +55,7 @@ export function IntroSection() {
         animate(".intro-title", {
           opacity: [0, 1],
           translateY: [30, 0],
-          duration: 800,
-          ease: "out(4)",
-        });
-
-        // Animate description - fade in with delay
-        animate(".intro-description", {
-          opacity: [0, 1],
-          translateY: [20, 0],
-          duration: 800,
-          delay: 200,
+          duration: 700,
           ease: "out(4)",
         });
 
@@ -65,8 +64,17 @@ export function IntroSection() {
           opacity: [0, 1],
           translateY: [40, 0],
           scale: [0.9, 1],
-          duration: 600,
+          duration: 500,
           delay: (el, i) => 400 + i * 150,
+          ease: "out(4)",
+        });
+
+        // Animate description card
+        animate(".intro-description", {
+          opacity: [0, 1],
+          translateY: [30, 0],
+          duration: 700,
+          delay: 900,
           ease: "out(4)",
         });
       });
@@ -97,7 +105,7 @@ export function IntroSection() {
           observer.disconnect();
         }
       }
-    }, 500);
+    }, 400);
 
     return () => {
       observer.disconnect();
@@ -110,36 +118,60 @@ export function IntroSection() {
 
   return (
     <section
+      id="why-us"
       ref={rootRef}
-      className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-vc-surface/20"
+      className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-vc-surface/10 to-transparent scroll-mt-20"
     >
-      <div className="container mx-auto">
-        <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h2 className="text-heading font-bold intro-title">
+      <div className="container mx-auto max-w-6xl">
+        {/* Title */}
+        <div className="text-center mb-8">
+          <h2 className="text-heading font-bold intro-title mb-4">
             Why <span className="text-light-blue">Verichains</span>?
           </h2>
-          <p className="text-base leading-6 text-white intro-description">
-            <span className="text-light-blue">Verichains</span> is Asia&apos;s
-            premier blockchain security firm, trusted by leading DeFi protocols
-            and Web3 companies. Our team of security experts works on
-            cutting-edge research, audits, and tools that protect billions of
-            dollars in digital assets.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-xl card-glass border border-vc-muted/20 intro-feature-card"
-              >
-                <h3 className="text-heading2 font-bold mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-base leading-6 text-white">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
+        </div>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12">
+          {highlights.map((item, idx) => (
+            <Card
+              key={idx}
+              className="p-6 text-center border-vc-muted/20 bg-linear-to-br from-vc-surface/30 to-vc-surface/10 hover:from-vc-surface/40 hover:to-vc-surface/20 transition-all duration-300 intro-feature-card"
+            >
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-light-blue mb-2">
+                {item.value}
+              </h3>
+              <p className="text-xs md:text-sm text-vc-muted font-medium">
+                {item.label}
+              </p>
+            </Card>
+          ))}
+        </div>
+
+        {/* Description */}
+        <div className="max-w-4xl mx-auto intro-description">
+          <Card className="p-8 lg:p-10 border-vc-muted/20 bg-vc-surface/20 backdrop-blur-sm">
+            <div className="space-y-6 text-base leading-7 text-white">
+              <p>
+                Verichains is a global leader in security solutions for both
+                traditional banking and finance as well as decentralized
+                DeFi/Web3. Since 2017, Verichains has combined deep expertise in
+                traditional security and blockchain technology to deliver
+                cutting-edge solutions to over 200 global clients, including{" "}
+                <span className="text-light-blue font-medium">
+                  Binance, Bullish, Bybit, Galaxy, Polygon, BNB Chain, Aptos,
+                  Sui, Kakao, Line Corp, Abu Dhabi Blockchain Center
+                </span>{" "}
+                as well as banks and financial institutions.
+              </p>
+              <p className="pt-4 border-t border-vc-muted/20">
+                We&apos;re also proud to be the only firm that had led incident
+                response for the largest Web3 hacks in history{" "}
+                <span className="text-light-blue font-medium">
+                  (Bybit, Binance/BNB, Ronin Network)
+                </span>
+              </p>
+            </div>
+          </Card>
         </div>
       </div>
     </section>
